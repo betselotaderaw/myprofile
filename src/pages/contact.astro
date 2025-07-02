@@ -1,0 +1,196 @@
+---
+import DefaultLayout from '../components/LayoutDefault.astro';
+import Button from '../components/Button.astro';
+import Alert from '../components/Alert.astro';
+import Socials from '../components/Socials.astro';
+---
+
+<DefaultLayout documentTitle="Contact" documentDescription="If you have a question or just want to say hi, I’ll get back to you as soon as I can!">
+  <div class="container" style="z-index: 1; position: relative;">
+    <h1 class="main-heading text-swipe-animation">Contact me</h1>
+    <p>If you have a question or just want to say hi, I’ll get back to you as soon as I can!</p>
+
+    <div class="top-row">
+      <section class="social-section">
+        <div class="contact-info">
+          <div><strong>Email:</strong> <a href="mailto:betselotaderaw@gmail.com">betselotaderaw@gmail.com</a></div>
+          <div><strong>Phone:</strong> <a href="tel:+4915213370579">+49 152 13370579 </a></div>
+          <div><strong>Location:</strong> Germany (CET/CEST)</div>
+        </div>
+        <div class="footer-icons-hint">
+          <span>
+            <span class="footer-arrow">
+              <svg width="38" height="38" viewBox="0 0 38 38" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle;">
+                <path d="M19 6V32M19 32L8 21M19 32L30 21" stroke="var(--color-mint, #21FF93)" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </span>
+          </span>
+        </div>
+      </section>
+
+      
+    </div>
+  </div>
+
+  <canvas id="waves"></canvas>
+</DefaultLayout>
+
+<style lang="scss">
+  .top-row {
+    margin-top: 1rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 4rem;
+    section {
+      flex: 1;
+    }
+  }
+
+  #contact-form {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    row-gap: 0.25rem;
+    .form-block-row {
+      display: flex;
+      gap: 1rem;
+    }
+  }
+
+  .contact-form-submit-button {
+    gap: 0.35rem;
+    align-self: flex-end;
+    margin-top: 0.5rem;
+  }
+
+  #contact-form-submit-button-spinner {
+    display: none;
+    animation-name: rotate;
+    animation-duration: 1s;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+  }
+
+  .contact-form-message {
+    display: none;
+  }
+
+  .social-section {
+    margin-top: 15px;
+  }
+
+  #waves {
+    width: 100%;
+    height: 100vh;
+    animation: fadeInWaves 2s;
+    background: transparent;
+    opacity: 0.5;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    position: relative;
+    z-index: 1;
+  }
+
+  @keyframes rotate {
+    from { transform: rotate(-360deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  @keyframes fadeInWaves {
+    0% { opacity: 0 }
+    100% { opacity: 0.5 }
+  }
+
+  @media screen and (max-width: 980px) {
+    .main-heading-break {
+      display: none;
+    }
+
+    .top-row {
+      gap: 2rem;
+      flex-direction: column;
+    }
+
+    .contact-form-submit-button {
+      width: 100%;
+    }
+
+    .socials {
+      li {
+        a {
+          font-size: var(--font-size-lg);
+          font-weight: normal;
+          svg {
+            width: 25px !important;
+            height: 25px !important;
+          }
+        }
+      }
+    }
+  }
+
+  .contact-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+    font-size: 1.1rem;
+    margin-top: 1.5rem;
+    a {
+      color: var(--color-mint);
+      text-decoration: underline;
+      word-break: break-all;
+    }
+  }
+
+  .footer-icons-hint {
+    position: fixed;
+    right: 3vw;
+    bottom: 20vh;
+    z-index: 10;
+    margin-top: 0;
+    color: var(--color-silver-300);
+    font-size: 1.13rem;
+    text-align: right;
+    letter-spacing: 0.01em;
+    background: rgba(20, 20, 20, 0);
+    border-radius: 1.2em;
+    padding: 0.7em 1.3em 0.7em 1.1em;
+    box-shadow: 0 2px 16px rgba(33, 255, 148, 0);
+    .footer-arrow {
+      display: inline-block;
+      margin-left: 0.3em;
+      animation: bounceDown 0.4s infinite alternate;
+      svg {
+        width: 3.6em;
+        height: 3.6em;
+        vertical-align: middle;
+        filter: drop-shadow(0 2px 8px rgba(33, 255, 148, 0));
+      }
+    }
+  }
+  @media screen and (max-width: 700px) {
+    .footer-icons-hint {
+      right: 0.7rem;
+      bottom: 20vh;
+      font-size: 0.98rem;
+      padding: 0.6em 1em 0.6em 0.8em;
+    }
+  }
+  @keyframes bounceDown {
+    0% { transform: translateY(0); }
+    100% { transform: translateY(8px); }
+  }
+</style>
+
+<script hoist>
+  import "../js/wave.js";
+  import "../js/contactForm.ts";
+</script>

@@ -1,0 +1,223 @@
+---
+import DefaultLayout from '../components/LayoutDefault.astro';
+import { yearsInIndustry } from "../js/yearsInIndustry";
+import DevLogo, { devIcons } from '../components/DevLogo.astro';
+import TimelineItem from "../components/TimelineItem.astro";
+
+function getSkillCategory(title) {
+  const frontend = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Astro", "Tailwind CSS", "Sass"];
+  const backend = ["Node.js", "PHP", "Python", "Java", "Spring Boot", "Spring MVC", "JHipster", "Hibernate", "JSP", "JWT", "OAuth"];
+  const devops = ["Docker", "AWS", "Linux"];
+  const tools = ["Git", "Figma", "Adobe XD", "Adobe Photoshop", "Adobe Illustrator", "Mocha", "Selenium", "Directus", "SanityCMS", "Pocketbase", "Firebase", "CoinPayment", "BIRT"];
+  if (frontend.includes(title)) return "frontend";
+  if (backend.includes(title)) return "backend";
+  if (devops.includes(title)) return "devops";
+  if (tools.includes(title)) return "tools";
+  return "other";
+}
+---
+
+<DefaultLayout documentTitle="About" documentDescription="I'm Luke, a Senior Software Developer based in the UK with over 9 years of experience building software.">
+  
+
+  <section class="container experience-section">
+    <h1 class="main-heading text-swipe-animation">Experience</h1>
+    <div class="timeline-items">
+      <TimelineItem
+        isCurrent
+        company="Fraunhofer"
+        workLocation="Bremen"
+        title="Master Thesis Researcher"
+        startDate="Mar 2025"
+        endDate="Aug 2025"
+        logo="/images/fraunhofer_mevis_logo.jpg"
+        responsibilities={[
+          "Developed an AI-driven, agent-based pipeline for constructing biomedical knowledge graphs from scientific literature.",
+          "Leveraged transformer-based models (BioBERT, GPT-4o, LLaMA) for biomedical entity and relation extraction.",
+          "Integrated NCIt ontology for semantic validation and reduction of LLM hallucinations.",
+          "Designed modular agents for document cleaning, NER, relationship extraction, validation, and graph storage (Neo4j).",
+          "Achieved high accuracy and diversity in relation extraction (entropy = 3.66 across 10 research papers).",
+          "Enabled natural language querying of biomedical knowledge using a graph-based QA interface."
+        ]}
+      />
+      <TimelineItem
+        company="Dulcian"
+        workLocation="Addis Ababa"
+        title="Software Developer"
+        startDate="May 2022"
+        endDate="Jan 2024"
+        logo="/images/Dulcian_Logo.jpg"
+        responsibilities={[
+          "Contributed to the growth and success of a start-up by providing adaptable and resilient support in an environment lacking basic resources, helping the company become one of the most recognized in Ethiopia.",
+          "Designed and developed secure, RESTful web-based applications using Java, Spring Boot, Hibernate/JPA, and implemented JWT authentication for service-to-service communication.",
+          "Built a system audit for multiple modules using AOP, created an import interface to fetch data from Excel, and integrated Spring Security to streamline authentication and authorization.",
+          "Collaborated on the development of the Integrated Time Attendance and Payroll (iTap) system used by over 825 governmental organizations, healthcare centers, and schools in the capital city, and served as Lead Developer on the Auto Dealer project, facilitating vehicle dealership."
+        ]}
+      />
+      <TimelineItem
+        company="Code Impact B.V."
+        workLocation="Remote, Netherlands"
+        title="Software Development"
+        startDate="Oct 2021"
+        endDate="May 2022"
+        logo="/images/codeimpact_logo.jpg"
+        responsibilities={[
+          "Creation of web applications, maintenance, testing, and support of high-quality code and services.",
+          "Collaborated with clients to collect requirements and provide an implementation for the project. Responsible for implementing a clean architecture and structured project. Participated in test-driven application development.",
+          "Analyzed system and project requirements to create technical specifications, developed client-side RESTful web applications and Open-API endpoints, managed data storage and retrieval with MySQL and MongoDB, and implemented multiple Cron services.",
+          "Responsible for writing unit testing using JUnit. Responsible for writing end-to-end testing using Selenium."
+        ]}
+      />
+      <TimelineItem
+        company="Dulcian"
+        workLocation="Addis Ababa"
+        title="Software Developer"
+        startDate="Aug 2018"
+        endDate="Oct 2021"
+        logo="/images/Dulcian_Logo.jpg"
+        responsibilities={[
+          "Worked in a scrum team of 7, responsible for building 5 modules for the web App from scratch.",
+          "Built the HR and payroll modules from scratch in Java, in a strict connection to the attendance module, developed to use the fingerprint to collect the working hours.",
+          "Responsible for the implementation of SOLID and DRY principles, and the industry’s best coding practices. Conducting weekly sprint meetings, testing and resolving bugs, and also occasionally meeting with the tenants to resolve their feature requests."
+        ]}
+      />
+    </div>
+  </section>
+</DefaultLayout>
+
+<script>
+  if (typeof window !== 'undefined') {
+    document.addEventListener('DOMContentLoaded', () => {
+      const filterBtns = document.querySelectorAll('.skills-filter-btn');
+      const gridItems = document.querySelectorAll('.skills-grid-item');
+      filterBtns.forEach(btn => {
+        btn.addEventListener('click', () => {
+          filterBtns.forEach(b => b.classList.remove('active'));
+          btn.classList.add('active');
+          const filter = btn.getAttribute('data-filter');
+          gridItems.forEach(item => {
+            if (filter === 'all' || item.getAttribute('data-category') === filter) {
+              item.style.display = '';
+            } else {
+              item.style.display = 'none';
+            }
+          });
+        });
+      });
+    });
+  }
+</script>
+
+<style lang="scss">
+  .experience-section {
+    margin-top: 3.5rem;
+  }
+  .main-heading.text-swipe-animation {
+    margin-top: 0;
+    margin-bottom: 2.5rem;
+    font-size: 2.5rem;
+    text-align: left;
+  }
+
+  .main-section {
+    display: flex;
+    gap: 2rem;
+    margin-top: 1rem;
+    align-items: center;
+  }
+
+  .profile-photo {
+    width: 200px;
+  }
+
+  .skills-section {
+    margin: 3.5rem 0 2.5rem 0;
+    padding: 0 0.5rem;
+  }
+  .skills-filters {
+    display: flex;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .skills-filter-btn {
+    background: var(--color-silver-900);
+    color: var(--color-mint);
+    border: none;
+    border-radius: 1.2em;
+    padding: 0.5em 1.3em;
+    font-size: 1.05rem;
+    cursor: pointer;
+    font-family: var(--font-family-IBM-Plex-Mono);
+    font-weight: 600;
+    transition: background 0.18s, color 0.18s;
+    &.active, &:hover {
+      background: var(--color-mint);
+      color: #181c1f;
+    }
+  }
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 1.5rem 2.2rem;
+    align-items: center;
+    justify-items: center;
+  }
+  .skills-grid-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.7rem;
+    background: rgba(255,255,255,0.01);
+    border-radius: 1.2em;
+    padding: 1.1em 0.5em 0.7em 0.5em;
+    box-shadow: 0 2px 16px rgba(33,255,147,0.04);
+    min-width: 90px;
+    min-height: 120px;
+  }
+  .skills-label {
+    font-size: 1.01rem;
+    color: var(--color-silver-200);
+    font-family: var(--font-family-IBM-Plex-Mono);
+    margin-top: 0.2em;
+    text-align: center;
+    word-break: break-word;
+  }
+
+  .sub-heading {
+    margin-top: 0;
+    margin-bottom: 25px;
+  }
+
+  .timeline-items {
+    display: flex;
+    flex-direction: column;
+    row-gap: 0rem;
+  }
+
+
+  @media screen and (max-width: 980px) {
+    .main-section {
+      gap: 1rem;
+      display: block;
+      word-break: break-word;
+    }
+
+    .profile-photo {
+      float: left;
+      width: 152px;
+      margin: 10px;
+    }
+
+    :global(.devicon) {
+      width: 45px !important;
+      height: 45px !important;
+    }
+  }
+</style>
+
+<script hoist>
+  import { greeting } from "../js/greeting";
+  const greetingContainer = document.getElementById("greeting");
+  greetingContainer.innerText = greeting();
+</script>

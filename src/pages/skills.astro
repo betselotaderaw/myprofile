@@ -1,0 +1,124 @@
+---
+import DefaultLayout from '../components/LayoutDefault.astro';
+import DevLogo, { devIcons } from '../components/DevLogo.astro';
+
+function getSkillCategory(title) {
+  const frontend = ["HTML", "CSS", "JavaScript", "TypeScript", "React", "Next.js", "Astro", "Tailwind CSS", "Sass"];
+  const backend = ["Node.js", "PHP", "Python", "Java", "Spring Boot", "Spring MVC", "JHipster", "Hibernate", "JSP", "JWT", "OAuth"];
+  const devops = ["Docker", "AWS", "Linux"];
+  const tools = ["Git", "Figma", "Adobe XD", "Adobe Photoshop", "Adobe Illustrator", "Mocha", "Selenium", "Directus", "SanityCMS", "Pocketbase", "Firebase", "CoinPayment", "BIRT"];
+  const ai = ["Huggingface", "Langchain", "LLaMA", "Neo4j", ];
+  if (frontend.includes(title)) return "frontend";
+  if (backend.includes(title)) return "backend";
+  if (devops.includes(title)) return "devops";
+  if (tools.includes(title)) return "tools";
+  if (ai.includes(title)) return "ai";
+  return "other";
+}
+---
+
+<DefaultLayout documentTitle="Skills" documentDescription="A categorized overview of my technical skills and tools.">
+  <section class="skills-section container">
+    <h1 class="main-heading text-swipe-animation">Skills</h1>
+    <div class="skills-filters">
+      <button class="skills-filter-btn active" data-filter="all">All</button>
+      <button class="skills-filter-btn" data-filter="frontend">Frontend</button>
+      <button class="skills-filter-btn" data-filter="backend">Backend</button>
+      <button class="skills-filter-btn" data-filter="devops">DevOps</button>
+      <button class="skills-filter-btn" data-filter="tools">Tools</button>
+      <button class="skills-filter-btn" data-filter="ai">AI</button>
+    </div>
+    <div class="skills-grid">
+      {devIcons.map(devIcon => (
+        <div class="skills-grid-item" data-category={getSkillCategory(devIcon.title)}>
+          <DevLogo icon={devIcon.title} size={48} />
+          <span class="skills-label">{devIcon.title}</span>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <script>
+    if (typeof window !== 'undefined') {
+      document.addEventListener('DOMContentLoaded', () => {
+        const filterBtns = document.querySelectorAll('.skills-filter-btn');
+        const gridItems = document.querySelectorAll('.skills-grid-item');
+        filterBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            filterBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            const filter = btn.getAttribute('data-filter');
+            gridItems.forEach(item => {
+              if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                item.style.display = '';
+              } else {
+                item.style.display = 'none';
+              }
+            });
+          });
+        });
+      });
+    }
+  </script>
+
+  <style lang="scss">
+    .skills-section {
+      margin-top: 3.5rem;
+    }
+    .main-heading.text-swipe-animation {
+      margin-top: 0;
+      margin-bottom: 2.5rem;
+      font-size: 2.5rem;
+      text-align: left;
+    }
+    .skills-filters {
+      display: flex;
+      gap: 1.2rem;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+    }
+    .skills-filter-btn {
+      background: var(--color-silver-900);
+      color: var(--color-mint);
+      border: none;
+      border-radius: 1.2em;
+      padding: 0.5em 1.3em;
+      font-size: 1.05rem;
+      cursor: pointer;
+      font-family: var(--font-family-IBM-Plex-Mono);
+      font-weight: 600;
+      transition: background 0.18s, color 0.18s;
+      &.active, &:hover {
+        background: var(--color-mint);
+        color: #181c1f;
+      }
+    }
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 1.5rem 2.2rem;
+      align-items: center;
+      justify-items: center;
+    }
+    .skills-grid-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.7rem;
+      background: rgba(255,255,255,0.01);
+      border-radius: 1.2em;
+      padding: 1.1em 0.5em 0.7em 0.5em;
+      box-shadow: 0 2px 16px rgba(33,255,147,0.04);
+      min-width: 90px;
+      min-height: 120px;
+    }
+    .skills-label {
+      font-size: 1.01rem;
+      color: var(--color-silver-200);
+      font-family: var(--font-family-IBM-Plex-Mono);
+      margin-top: 0.2em;
+      text-align: center;
+      word-break: break-word;
+    }
+  </style>
+</DefaultLayout>

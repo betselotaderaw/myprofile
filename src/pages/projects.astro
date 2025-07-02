@@ -1,0 +1,99 @@
+---
+import DefaultLayout from '../components/LayoutDefault.astro';
+import PortfolioItem from '../components/PortfolioItem.astro';
+import { writeToLocalDataFile, readLocalDataFile } from '../js/localDataManager';
+
+
+---
+
+<DefaultLayout documentTitle="Projects" documentDescription="Major and personal projects.">
+  <div class="container">
+    <h1 class="main-heading text-swipe-animation">Projects</h1>
+    <div class="intro">
+      <p>Major and personal projects, with a focus on AI, automation, and full-stack development.</p>
+    </div>
+    <section class="projects">
+      <PortfolioItem
+        projectYear="2025"
+        title="AI Biomedical Knowledge Graph Pipeline (Fraunhofer)"
+        image="/images/aiProject.png"
+        tags={["Python","Neo4j","LLaMA","Langchain","Huggingface"]}
+        projectLink="https://drive.google.com/file/d/1_wOPOFflLhTtI3Q12uo2eq5QQbYwUg-W/view?usp=sharing"
+        sourceCode="https://github.com/medcc-lab/CausalRAGAgent#">
+        <p slot="subtitle">AI-driven, agent-based pipeline for constructing biomedical knowledge graphs from scientific literature.</p>
+        <div slot="description">
+          <ul>
+            <li>Leveraged transformer-based models (BioBERT, GPT-4o, LLaMA) for biomedical entity and relation extraction</li>
+            <li>Integrated NCIt ontology for semantic validation and reduction of LLM hallucinations</li>
+            <li>Designed modular agents for document cleaning, NER, relationship extraction, validation, and graph storage (Neo4j)</li>
+            <li>Achieved high accuracy and diversity in relation extraction (entropy = 3.66 across 10 research papers)</li>
+            <li>Enabled natural language querying of biomedical knowledge using a graph-based QA interface</li>
+          </ul>
+        </div>
+      </PortfolioItem>
+      <PortfolioItem
+        projectYear="2024"
+        title="Power (Personal Project)"
+        image="/images/power.png"
+        tags={["Next.js","Pocketbase","Firebase",]}
+        projectLink="https://company-social-media.web.app/"
+        sourceCode="https://github.com/betselotaderaw/Power-Social">
+        <p slot="subtitle">A hobby project to integrate a crypto payment system on a social media promotion platform.</p>
+        <div slot="description">
+        </div>
+      </PortfolioItem>
+      <PortfolioItem
+        projectYear="2022"
+        title="OGR (Oil and Gas Refinery Regulation System)"
+        image="/images/OGR.png"
+        tags={["Java","Jhipster","Spring Boot","React","MySQL"]}
+        projectLink=""
+        sourceCode="https://github.com/betselotaderaw/OGR">
+        <p slot="subtitle">A comprehensive regulatory compliance and management solution for the oil and gas industry, ensuring superior functionality and compliance with industry standards.</p>
+        <div slot="description">
+        </div>
+      </PortfolioItem>
+      <PortfolioItem
+        projectYear="2021"
+        title="Auto Dealer"
+        image="/images/autodealer.png"
+        tags={["Java","Spring Boot","React","MySQL"]}
+        projectLink=""
+        sourceCode="">
+        <p slot="subtitle">A web application platform designed to automate stock, sales, and inspection management for auto dealers.</p>
+        <div slot="description">
+        </div>
+      </PortfolioItem>
+     
+      <PortfolioItem
+        projectYear="2018-2020"
+        title="ITAP (Integrated Time Attendance and Payroll System)"
+        image="/images/ITAP.png"
+        tags={["JavaScript","Java","Selenium","Spring Boot","React","MS SQL"]}
+        projectLink=""
+        sourceCode="">
+        <p slot="subtitle">A web application integrated with a biometric System (Face and Fingerprint) for attendance and payroll system for the entire governmental organization located in Addis Ababa (over 1000 organizations).</p>
+        <div slot="description">
+          
+        </div>
+      </PortfolioItem>
+      
+      
+    </section>
+  </div>
+</DefaultLayout>
+
+<style lang="scss">
+  .projects {
+    display: flex;
+    flex-direction: column;
+    margin-top: 3rem;
+    row-gap: 2rem;
+  }
+
+  @media screen and (max-width: 980px) {
+    .projects {
+      margin-top: 1.5rem;
+    }
+  }
+</style>

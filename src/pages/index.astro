@@ -1,0 +1,274 @@
+---
+import DefaultLayout from '../components/LayoutDefault.astro';
+import Button from '../components/Button.astro';
+import DevLogo, { devIcons } from '../components/DevLogo.astro';
+---
+
+<DefaultLayout documentTitle="Betselot Miheret">
+  <section class="container flex-intro" style="z-index: 1; position: relative;">
+    <div class="main-section">
+      <div class="profile-photo-reveal">
+        <img class="profile-photo" src="/images/Betselot.png" alt="Luke Liasi">
+        <div class="reveal-overlay"></div>
+      </div>
+    </div>
+    <div class="intro-content">
+      <h1>
+        <span class="intro-welcome">Hi ✌️, I'm <br></span>
+        <span class="intro-name text-swipe-animation">Betselot Miheret </span>
+      </h1>
+      <h2 class="job-title-animate">
+        <span class="job-title job-title-1">Software Engineer</span>
+        <span class="job-title job-title-2">Full-Stack Developer</span>
+         <br>
+      </h2>
+      <p class="desc">
+          Over 5 years of industry experience specialising in JavaScript, React & Java.
+      </p>
+    </div>
+    
+  </section>
+  <div class="tech-stack-section">
+    <div class="tech-stack-title"></div>
+    <div class="tech-stack-logos">
+      {devIcons.map(devIcon => <DevLogo icon={devIcon.title} size={24} />)}
+    </div>
+  </div>
+
+  <canvas id="waves"></canvas>
+</DefaultLayout>
+
+<style lang="scss">
+  $waves-opacity: 0.5;
+
+  @keyframes fadeInWaves {
+    0% { opacity: 0 }
+    100% { opacity: $waves-opacity }
+  }
+
+  canvas#waves {
+    width: 100%;
+    height: 100vh;
+    animation: fadeInWaves 1s;
+    background: transparent;
+    opacity: $waves-opacity;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+
+  h1 {
+    line-height: 2.5rem;
+    margin: 1rem 0;
+  }
+
+  .intro-welcome {
+    color: var(--color-mint);
+    font-family: var(--font-family-IBM-Plex-Mono);
+    font-weight: 600;
+    font-size: var(--font-size-base);
+  }
+
+  .intro-name {
+    font-family: var(--font-family-Mukta);
+    font-size: var(--font-size-14xl);
+    overflow: hidden;
+    display: inline-block;
+    padding: 10px 0;
+    color: white;
+  }
+
+  .intro {
+    color: var(--color-silver-300);
+    font-size: var(--font-size-11xl);
+    line-height: 3.25rem;
+    margin: 1rem 0;
+  }
+
+  .desc {
+    color: var(--color-silver-100);
+    font-size: var(--font-size-lg);
+    line-height: 1.5em;
+    margin: 1.5rem 0;
+  }
+
+  .flex-intro {
+    display: flex;
+    flex-direction: row-reverse; // Move profile to the right
+    justify-content: center;
+    align-items: center; // Reduced gap for closer grouping
+    width: 100%;
+    max-width: 90%; // Limit width for tighter grouping
+    margin: 0 auto;
+    padding: 0 1.5rem; // Add horizontal padding
+  }
+  .intro-content {
+    flex: 1 1 0;
+    min-width: 0;
+  }
+  .main-section {
+    flex: 0 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: evenly;
+  }
+  .profile-photo {
+    width: 290px;
+    height: 290px;
+    border-radius: 35%;
+    object-fit: cover;
+    box-shadow: 0 4px 32px rgba(249, 247, 247, 0);
+    background: transparent;
+    display: block;
+  }
+  .profile-photo-reveal {
+    position: relative;
+    display: inline-block;
+  }
+  .reveal-overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 35%;
+    background: linear-gradient(90deg, var(--color-silver) 0%, #fff 100%);
+    z-index: 2;
+    pointer-events: none;
+    animation: revealWipe 1.5s cubic-bezier(0.77,0,0.18,1) 0.2s forwards;
+  }
+  @keyframes revealWipe {
+    0% { clip-path: inset(0 0 0 0); opacity: 1; }
+    80% { opacity: 1; }
+    100% { clip-path: inset(0 0 0 100%); opacity: 0; }
+  }
+
+  @media screen and (max-width: 900px) {
+    .flex-intro {
+      flex-direction: column-reverse;
+      align-items: center;
+      justify-content: center;
+      max-width: 100vw;
+      padding: 0 0.5rem;
+      gap: 1.2rem;
+    }
+    .main-section {
+      margin-top: 2rem;
+      width: 100%;
+      justify-content: center;
+    }
+    .profile-photo {
+      width: 170px;
+      height: 170px;
+    }
+    .intro-content {
+      align-items: center;
+      text-align: center;
+    }
+  }
+
+  @media screen and (max-width: 980px) {
+    h1 {
+      line-height: 1.75rem;
+      margin: 0.5rem 0;
+    }
+
+    .intro-name {
+      font-size: var(--font-size-10xl);
+      line-height: 3rem;
+    }
+
+    .intro {
+      font-size: var(--font-size-3xl);
+      line-height: 2rem;
+      margin: 0.5rem 0;
+    }
+
+    .intro-break {
+      display: none;
+    }
+
+    .desc-break {
+      display: none;
+    }
+  }
+
+  .job-title-animate {
+    position: relative;
+    height: 0.5em;
+    display: inline-block;
+    vertical-align: bottom;
+  }
+  .job-title {
+    
+    left: 0;
+    top: 0;
+    width: 100%;
+    opacity: 0;
+    animation: fadeJobTitle 6s linear infinite;
+    font-size: var(--font-size-3xl); // increased size
+    color: var(--color-mint);
+    font-weight: 1000;
+    letter-spacing: 0.5px;
+  }
+  .job-title-1 { animation-delay: 0s; }
+  .job-title-2 { animation-delay: 3s; }
+  
+
+  @keyframes fadeJobTitle {
+    0% { opacity: 0; }
+    5% { opacity: 1; }
+    30% { opacity: 1; }
+    35% { opacity: 0; }
+    100% { opacity: 0; }
+  }
+
+  .tech-stack-section {
+    margin-top: 3.5rem;
+    margin-bottom: 0.5rem;
+    text-align: left;
+    width: 100vw;
+    max-width: 100vw;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+  .tech-stack-title {
+    font-size: var(--font-size-base);
+    font-weight: 700;
+    color: var(--color-mint);
+    margin-bottom: 0.5rem;
+    text-align: center;
+  }
+  .tech-stack-logos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.7rem 1.1rem;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .devicon {
+    filter: drop-shadow(0 2px 8px rgba(33,255,147,0.10));
+    transition: transform 0.2s;
+    border-radius: 6px;
+    background: rgba(255,255,255,0.01);
+    padding: 2px;
+    width: 24px !important;
+    height: 24px !important;
+  }
+  .devicon:hover {
+    transform: scale(1.12) rotate(-3deg);
+    box-shadow: 0 2px 16px rgba(33,255,147,0.13);
+    background: rgba(33,255,147,0.06);
+  }
+</style>
+
+<script hoist>
+  import "../js/wave.js";
+  import "../js/profilePixelate.js";
+</script>
