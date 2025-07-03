@@ -30,7 +30,7 @@ import DevLogo, { devIcons } from '../components/DevLogo.astro';
   <div class="tech-stack-section">
     <div class="tech-stack-title"></div>
     <div class="tech-stack-logos">
-      {devIcons.map(devIcon => <DevLogo icon={devIcon.title} size={24} />)}
+      {["Spring Boot", "Java", "React", "JavaScript", "AWS", "MS SQL", "Docker"].map(icon => <DevLogo icon={icon} size={36} />)}
     </div>
   </div>
 
@@ -274,8 +274,8 @@ import DevLogo, { devIcons } from '../components/DevLogo.astro';
     border-radius: 6px;
     background: rgba(255,255,255,0.01);
     padding: 2px;
-    width: 24px !important;
-    height: 24px !important;
+    width: 36px !important;
+    height: 36px !important;
   }
   .devicon:hover {
     transform: scale(1.12) rotate(-3deg);
