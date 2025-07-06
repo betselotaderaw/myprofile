@@ -4,35 +4,35 @@ import DevLogo, { devIcons } from '../components/DevLogo.astro';
 ---
 
 <DefaultLayout documentTitle="Betselot Miheret">
-  <section class="container flex-intro" style="z-index: 1; position: relative;">
-    <div class="main-section">
-      <div class="profile-photo-reveal">
-        <img class="profile-photo" src="/images/Betselot.png" alt="Betselot Miheret">
-        <div class="reveal-overlay"></div>
+  <div class="container">
+    <section class="flex-intro" style="z-index: 1; position: relative;">
+      <div class="main-section">
+        <div class="profile-photo-reveal">
+          <img class="profile-photo" src="/images/Betselot.png" alt="Betselot Miheret">
+          <div class="reveal-overlay"></div>
+        </div>
+      </div>
+      <div class="intro-content">
+        <h1>
+          <span class="intro-welcome">Hi ✌️, I'm <br></span>
+          <span class="intro-name text-swipe-animation">Betselot Miheret </span>
+        </h1>
+        <h2 class="job-title-animate">
+          <span class="job-title job-title-1">Software Engineer</span>
+          <span class="job-title job-title-2">Full-Stack Developer</span>
+        </h2>
+        <p class="desc">
+            Over 5 years of industry experience specialising in JavaScript, React & Java.
+        </p>
+      </div>
+    </section>
+    <div class="tech-stack-section">
+      <div class="tech-stack-title"></div>
+      <div class="tech-stack-logos">
+        {["Spring Boot", "Java", "React", "JavaScript", "AWS", "MS SQL", "Docker"].map(icon => <DevLogo icon={icon} size={36} />)}
       </div>
     </div>
-    <div class="intro-content">
-      <h1>
-        <span class="intro-welcome">Hi ✌️, I'm <br></span>
-        <span class="intro-name text-swipe-animation">Betselot Miheret </span>
-      </h1>
-      <h2 class="job-title-animate">
-        <span class="job-title job-title-1">Software Engineer</span>
-        <span class="job-title job-title-2">Full-Stack Developer</span>
-      </h2>
-      <p class="desc">
-          Over 5 years of industry experience specialising in JavaScript, React & Java.
-      </p>
-    </div>
-    
-  </section>
-  <div class="tech-stack-section">
-    <div class="tech-stack-title"></div>
-    <div class="tech-stack-logos">
-      {["Spring Boot", "Java", "React", "JavaScript", "AWS", "MS SQL", "Docker"].map(icon => <DevLogo icon={icon} size={36} />)}
-    </div>
   </div>
-
   <canvas id="waves"></canvas>
 </DefaultLayout>
 
@@ -244,8 +244,8 @@ import DevLogo, { devIcons } from '../components/DevLogo.astro';
     margin-top: 3.5rem;
     margin-bottom: 0.5rem;
     text-align: left;
-    width: 100vw;
-    max-width: 100vw;
+    width: 100%;
+    max-width: none;
     display: flex;
     flex-direction: column;
     align-items: center;

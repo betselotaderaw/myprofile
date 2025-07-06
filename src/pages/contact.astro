@@ -24,8 +24,6 @@ import DefaultLayout from '../components/LayoutDefault.astro';
           </span>
         </div>
       </section>
-
-      
     </div>
   </div>
 
@@ -94,6 +92,10 @@ import DefaultLayout from '../components/LayoutDefault.astro';
   .container {
     position: relative;
     z-index: 1;
+    max-width: 1280px;
+    margin: 0 auto;
+    padding-left: 25px;
+    padding-right: 25px;
   }
 
   @keyframes rotate {
@@ -149,7 +151,8 @@ import DefaultLayout from '../components/LayoutDefault.astro';
 
   .footer-icons-hint {
     position: fixed;
-    right: 3vw;
+    right: 0;
+    left: unset;
     bottom: 20vh;
     z-index: 10;
     margin-top: 0;
@@ -159,8 +162,14 @@ import DefaultLayout from '../components/LayoutDefault.astro';
     letter-spacing: 0.01em;
     background: rgba(20, 20, 20, 0);
     border-radius: 1.2em;
-    padding: 0.7em 1.3em 0.7em 1.1em;
+    padding: 0.7em 3.3em 0.7em 1.1em;
     box-shadow: 0 2px 16px rgba(33, 255, 148, 0);
+    width: auto;
+    max-width: none;
+    /* Use a container-aligned offset for large screens */
+    @media (min-width: 1280px) {
+      right: calc((100vw - 1280px) / 2 + 25px);
+    }
     .footer-arrow {
       display: inline-block;
       margin-left: 0.3em;
@@ -171,6 +180,12 @@ import DefaultLayout from '../components/LayoutDefault.astro';
         vertical-align: middle;
         filter: drop-shadow(0 2px 8px rgba(33, 255, 148, 0));
       }
+    }
+  }
+  @media screen and (max-width: 1280px) {
+    .footer-icons-hint {
+      right: 0.7rem;
+      max-width: none;
     }
   }
   @media screen and (max-width: 700px) {
